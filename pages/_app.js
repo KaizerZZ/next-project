@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Head>
-        <title>InstantGram</title>
+        <title>HoloGram</title>
       </Head>
       <ThemeProvider theme={theme["default-theme"]}>
         <Component {...pageProps} />

@@ -1,8 +1,7 @@
-import styled from "styled-components";
-import TopNav from "components/TopNav";
+import TopNav from "components/ui/homepage/TopNav";
 import StoryContainer from "components/containers/StoryContainer";
 import PostContainer from "components/containers/PostContainer";
-import Nav from "components/Nav";
+import Nav from "components/ui/Nav";
 
 const Home = () => {
   return (

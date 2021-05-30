@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { IoCameraOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { IoArrowBackOutline, IoPersonAddOutline } from "react-icons/io5";
+import { useRouter } from "next/router";
 
 const IconButton = styled("button")`
   height: 32px;
@@ -9,12 +10,12 @@ const IconButton = styled("button")`
   align-items: center;
 `;
 
-const TopNavWrapper = styled("div")`
+const TopNavWrapper = styled("section")`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-  height: 64px;
+  height: 48px;
   border-bottom: solid 2px #eaeaea;
   position: fixed;
   left: 0;
@@ -22,17 +23,23 @@ const TopNavWrapper = styled("div")`
   background: #fff;
 `;
 
-const TopNav = () => {
+const TopNav = (props) => {
+  const {username} = props;
+  const routers = useRouter();
   return (
+    <>
     <TopNavWrapper>
       <IconButton>
-        <IoCameraOutline className="text-2xl" />
+        <IoArrowBackOutline className="text-2xl" onClick={()=>{
+          routers.push('/');
+        }}/>
       </IconButton>
-      <h3 className="font-bold text-xl">InstantGram</h3>
+      <h3 className="font-bold text-md">@{username}</h3>
       <IconButton>
-        <IoChatbubbleEllipsesOutline className="text-2xl" />
+        <IoPersonAddOutline className="text-2xl" />
       </IconButton>
     </TopNavWrapper>
+    </>
   );
 };
 

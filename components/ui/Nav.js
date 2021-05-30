@@ -6,12 +6,13 @@ import {
   IoHeartOutline,
   IoPersonCircleOutline,
 } from "react-icons/io5";
+import { useRouter } from "next/router";
 
 const BottomNavWrapper = styled("div")`
-  height: 64px;
+  height: 48px;
   display: flex;
   justify-content: space-between;
-  padding: 0px 12px;
+  padding: 0px 15px;
   border-top: solid 2px #eaeaea;
   align-items: center;
   position: fixed;
@@ -27,14 +28,17 @@ const ButtonNav = styled("button")`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 24px;
 `;
 
 const Nav = () => {
+  const routers = useRouter();
   return (
     <BottomNavWrapper>
       <ButtonNav>
-        <IoHomeOutline />
+        <IoHomeOutline onClick={()=>{
+          routers.push('/');
+        }}/>
       </ButtonNav>
       <ButtonNav>
         <IoSearchOutline />

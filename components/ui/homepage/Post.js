@@ -12,7 +12,6 @@ import { useState } from "react";
 
 const PostHeader = styled("div")`
   height: 72px;
-  background: blue;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,7 +21,6 @@ const PostHeader = styled("div")`
 const Profile = styled("div")`
   width: 42px;
   height: 42px;
-  background: red;
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -48,10 +46,10 @@ const ActionButton = styled("button")`
 
 const PostBody = styled("div")`
   height: 320px;
-  background: yellow;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #ececec;
 `;
 
 const PostAction = styled("div")`
@@ -69,7 +67,7 @@ const PostComment = styled("div")`
 `;
 
 const Post = (props) => {
-  const { username, likes, timestamp } = props;
+  const { id, name, username, likes, timestamp, profpic, postImage, caption } = props;
 
   const [isLiked, setIsLiked] = useState(false);
   const routers = useRouter();
@@ -79,15 +77,16 @@ const Post = (props) => {
   };
 
   return (
-    <div className="mb-8">
+    <div className="mb-8" key={id}>
       <PostHeader>
         <div className="flex items-center gap-2">
           <Profile
             onClick={() => {
               routers.push(`/${username}`);
             }}
+            className="border-2 border-pink-700"
           >
-            Foto
+            <img className="rounded-full m-1" src={profpic}/>
           </Profile>
           <div
             className="inline-block"
@@ -95,7 +94,7 @@ const Post = (props) => {
               routers.push(`/${username}`);
             }}
           >
-            {username}
+            {name}
           </div>
         </div>
         <div>
@@ -104,7 +103,9 @@ const Post = (props) => {
           </MoreButton>
         </div>
       </PostHeader>
-      <PostBody>foto here</PostBody>
+      <PostBody>
+        <img className="h-full sm:w-auto w-full" src={postImage}/>
+      </PostBody>
       <PostAction>
         <div className="flex gap-2">
           <ActionButton
@@ -131,8 +132,8 @@ const Post = (props) => {
       <PostDescription>
         <div className="text-xs">{likeLabel(likes)}</div>
         <div>
-          <span className="font-bold">mikunendoroid</span> lorem ipsum dolor sit
-          amet
+          <span className="font-bold">{name} </span> 
+          <p className="inline"> {caption.substr(0,50)} <span className="text-sm" >View all</span> </p>
         </div>
       </PostDescription>
       <PostComment>
